@@ -1,0 +1,355 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Georgia, serif;
+    background: #edf5ef;
+    color: #244b46;
+  }
+  
+  /* =========================
+     TELA INICIAL DO ENVELOPE
+  ========================= */
+  
+  .envelope-intro {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 15px;
+    background:
+      radial-gradient(circle at top, #d7eadf, transparent 60%),
+      linear-gradient(135deg, #173f50, #286b69);
+    transition: opacity .7s, visibility .7s;
+  }
+  
+  .intro-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .intro-cap {
+    font-size: 42px;
+  }
+  
+  .intro-kicker,
+  .eyebrow {
+    color: #0d0d0d;
+    letter-spacing: .25em;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  
+  .intro-title {
+    color: #fff;
+    font-size: clamp(25px, 5vw, 39px);
+    line-height: 1.35;
+    text-shadow: 0 3px 18px rgba(0,0,0,.2);
+    margin-bottom: 15px;
+  }
+  
+  /* =========================
+     ENVELOPE
+  ========================= */
+  
+  .envelope-button {
+    position: relative;
+    width: min(440px, 88vw);
+    height: 285px;
+    border: 2px solid #41a563c6;
+    border-radius: 13px;
+    background: linear-gradient(
+      145deg,
+      #92c89b 0%,
+      #b4e2c8 48%,
+      #b8d8c9 100%
+    );
+    box-shadow:
+      0 30px 75px rgba(0,0,0,.34),
+      inset 0 0 0 7px rgba(127, 90, 90, 0.24);
+    perspective: 900px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .envelope-button::before {
+    content: "✦  BENEtech  ✦";
+    position: absolute;
+    z-index: 5;
+    bottom: 19px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #1f574d;
+    font: 600 12px Georgia, serif;
+    letter-spacing: .28em;
+    text-shadow: 0 1px #876767;
+  }
+  
+  .envelope-button::after {
+    content: "";
+    position: absolute;
+    z-index: 4;
+    inset: 12px;
+    border: 1px solid rgba(57, 208, 158, 0.411);
+    border-radius: 7px;
+    pointer-events: none;
+  }
+  
+  .envelope-flap {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 100%;
+    background: linear-gradient(145deg, #22905fd8, #276348 85%);
+    clip-path: polygon(0 0, 100% 0, 50% 58%);
+    transform-origin: top;
+    transition: transform .7s ease;
+    z-index: 3;
+    filter: drop-shadow(0 5px 5px rgba(29,76,65,.18));
+  }
+  
+  .envelope-pocket {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(35deg, #22905fd8, #276348);
+    clip-path: polygon(0 100%, 0 35%, 50% 75%, 100% 35%, 100% 100%);
+    z-index: 2;
+    filter: drop-shadow(0 -2px 2px rgba(29,76,65,.12));
+  }
+  
+  .envelope-seal {
+    position: absolute;
+    z-index: 6;
+    width: 66px;
+    height: 66px;
+    border: 3px double #d8eadc;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #69a88c, #28695f);
+    box-shadow:
+      0 5px 16px #183b5066,
+      0 0 0 5px rgba(255,255,255,.3);
+    color: white;
+    font-size: 29px;
+    display: grid;
+    place-items: center;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .3s;
+  }
+  
+  .envelope-button.opening .envelope-flap {
+    transform: rotateX(180deg);
+  }
+  
+  .envelope-hint {
+    color: #e2f0e7;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  
+  /* CORREÇÃO: REMOVE O ENVELOPE DO LAYOUT APÓS ABRIR */
+  
+  .envelope-intro.opened {
+    display: none;
+  }
+  
+  /* =========================
+     PÁGINA DO CONVITE
+  ========================= */
+  
+  .invitation {
+    display: none;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px 22px 60px;
+    animation: aparecer 1s ease;
+  }
+  
+  .invitation.visible {
+    display: block;
+  }
+  
+  /* CAPA */
+  
+  .hero {
+    text-align: center;
+    padding: 65px 25px;
+    background: linear-gradient(135deg, #1b5260, #347d72);
+    color: white;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px #183b5020;
+    margin-top: 0;
+  }
+  
+  .hero h1 {
+    font-size: clamp(30px, 5vw, 45px);
+    margin: 22px 0;
+    line-height: 1.2;
+  }
+  
+  .hero-text {
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.8;
+    color: #e2f0e7;
+  }
+  
+  /* DETALHES DO EVENTO */
+  
+  .details {
+    text-align: center;
+    padding: 65px 15px;
+  }
+  
+  .details h2,
+  .teacher-message h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #28695f;
+  }
+  
+  .details > p {
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+  
+  .detail-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 22px;
+    background: white;
+    border: 1px solid #d4e8dc;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 8px 25px #244b4610;
+  }
+  
+  .detail-card span {
+    font-size: 30px;
+  }
+  
+  .detail-card strong {
+    color: #28695f;
+  }
+  
+  .detail-card p {
+    margin-top: 5px;
+    color: #54736b;
+  }
+  
+  /* HOMENAGEM AO PADRINHO */
+  
+  .teacher-message {
+    position: relative;
+    padding: 50px 35px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #e1f0e6, #f8fbf8);
+    border: 1px solid #c5dfd0;
+    text-align: center;
+    line-height: 1.9;
+    box-shadow: 0 15px 35px #244b4610;
+  }
+  
+  .message-decoration {
+    font-size: 32px;
+    color: #68a68c;
+    margin-bottom: 15px;
+  }
+  
+  .teacher-message .eyebrow {
+    margin-bottom: 15px;
+    color: #548e79;
+  }
+  
+  .teacher-message p:not(.eyebrow) {
+    margin: 18px auto;
+    max-width: 650px;
+  }
+  
+  .signature {
+    color: #28695f;
+    font-weight: bold;
+    margin-top: 30px !important;
+  }
+  
+  /* RODAPÉ */
+  
+  footer {
+    text-align: center;
+    padding: 45px 15px;
+    color: #52756b;
+    line-height: 2;
+  }
+  
+  footer strong {
+    color: #28695f;
+    letter-spacing: .15em;
+  }
+  
+  /* ANIMAÇÃO */
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* =========================
+     RESPONSIVIDADE
+  ========================= */
+  
+  @media (max-width: 760px) {
+    .envelope-button {
+      width: min(350px, 88vw);
+      height: 230px;
+    }
+  
+    .envelope-seal {
+      width: 58px;
+      height: 58px;
+    }
+  
+    .teacher-message {
+      padding: 38px 22px;
+    }
+  
+    .invitation {
+      padding: 15px 15px 40px;
+    }
+  
+    .hero {
+      padding: 45px 20px;
+    }
+  
+    .details {
+      padding: 45px 10px;
+    }
+  }
+  
